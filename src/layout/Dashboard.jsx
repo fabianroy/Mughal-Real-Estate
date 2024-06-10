@@ -7,6 +7,9 @@ const Dashboard = () => {
         <NavLink to='/dashboard/manageusers' className='font-semibold'><li><a>Manage Users</a></li></NavLink>
         <NavLink to='/dashboard/manageproperties' className='font-semibold'><li><a>Manage Properties</a></li></NavLink>
         <NavLink to='/dashboard/managereviews' className='font-semibold'><li><a>Manage Reviews</a></li></NavLink>
+        <div className="divider"></div>
+        <NavLink to='/' className='font-semibold'><li><a>Home</a></li></NavLink>
+        <NavLink to='/allproperties' className='font-semibold'><li><a>All Properties</a></li></NavLink>
     </>
 
     return (

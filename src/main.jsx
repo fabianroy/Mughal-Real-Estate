@@ -19,6 +19,8 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
+import PrivateRoute from './route/PrivateRoute';
+import AdminRoute from './route/AdminRoute';
 
 const queryClient = new QueryClient()
 
@@ -43,24 +45,24 @@ const router = createBrowserRouter([
   },
   {
     path: 'dashboard',
-    element: <Dashboard></Dashboard>,
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
       // Admin Routes
       {
         path: 'adminprofile',
-        element: <AdminProfile></AdminProfile>
+        element: <AdminRoute><AdminProfile></AdminProfile></AdminRoute>
       },
       {
         path: 'manageusers',
-        element: <ManageUsers></ManageUsers>
+        element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
       },
       {
         path: 'manageproperties',
-        element: <ManageProperties></ManageProperties>
+        element: <AdminRoute><ManageProperties></ManageProperties></AdminRoute>
       },
       {
         path: 'managereviews',
-        element: <ManageReviews></ManageReviews>
+        element: <AdminRoute><ManageReviews></ManageReviews></AdminRoute>
       }
     ]
   }
@@ -68,10 +70,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <AuthProvider>
+    <AuthProvider>
+      <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
-      </AuthProvider>
-    </QueryClientProvider>
+      </QueryClientProvider>
+    </AuthProvider>
   </React.StrictMode>,
 )

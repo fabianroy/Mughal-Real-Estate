@@ -1,10 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from '../../assets/logo.png';
 import useAuth from "../../hooks/useAuth";
+import useAdmin from "../../hooks/useAdmin";
 
 const NavBar = () => {
 
     const { user, logOut } = useAuth();
+    const [isAdmin] = useAdmin();
 
     const handleLogout = () => {
         logOut()
@@ -20,7 +22,8 @@ const NavBar = () => {
         <NavLink className='font-semibold' to='/'><li><a>Home</a></li></NavLink>
         <NavLink className='font-semibold' to='/allproperties'><li><a>All Properties</a></li></NavLink>
         {
-            user ? <NavLink className='font-semibold' to='/dashboard'><li><a>Dashboard</a></li></NavLink> : null
+            user && isAdmin &&
+            <NavLink className='font-semibold' to='/dashboard/adminprofile'><li><a>Dashboard</a></li></NavLink>
         }
     </>
 
