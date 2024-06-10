@@ -70,6 +70,29 @@ const ManageUsers = () => {
             });
     };
 
+    const handleRemoveUser = user => {
+        Swal.fire({
+            title: "Are you sure to remove the user?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, remove it!"
+        })
+            .then(res => {
+                if (res.isConfirmed) {
+                    axiosSecure.delete(`/users/${user._id}`)
+                        .then(res => {
+                            if (res.data.deletedCount > 0) {
+                                refetch();
+                                Swal.fire("Deleted!", "The user has been removed.", "success");
+                            }
+                        })
+                }
+            })
+    }
+
     return (
         <div>
             <div className="lg:flex text-center items-center justify-evenly my-4">
@@ -86,8 +109,8 @@ const ManageUsers = () => {
                                 <th>Photo</th>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Admin</th>
-                                <th>Agent</th>
+                                <th>Make Admin</th>
+                                <th>Make Agent</th>
                                 <th>ID</th>
                                 <th>Remove</th>
                             </tr>
@@ -143,7 +166,7 @@ const ManageUsers = () => {
                                     </td>
                                     <td>{user._id}</td>
                                     <td>
-                                        <button className="btn btn-error text-white"><FaTrash /></button>
+                                        <button onClick={() => handleRemoveUser(user)} className="btn btn-error text-white"><FaTrash /></button>
                                     </td>
                                 </tr>
                             ))}
