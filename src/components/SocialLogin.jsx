@@ -5,14 +5,14 @@ import Swal from "sweetalert2";
 import { FaGoogle } from "react-icons/fa";
 
 const SocialLogin = () => {
-  
-    const { signWithGoogle } = useAuth();
+
+    const { signInWithGoogle } = useAuth();
     const axiosPubic = usePublicAxios();
 
     const navigate = useNavigate();
 
     const handleWithGoogle = () => {
-        signWithGoogle()
+        signInWithGoogle()
             .then(result => {
                 console.log(result.user);
                 const userInfo = {

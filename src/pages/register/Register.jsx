@@ -3,6 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import usePublicAxios from "../../hooks/usePublicAxios";
+import SocialLogin from "../../components/SocialLogin";
 
 const Register = () => {
 
@@ -98,7 +99,7 @@ const Register = () => {
                                 <button type="submit" className="btn text-white bg-orange-500">Register</button>
                             </div>
                             <p className='mt-4'>Already have an account? <Link className='text-orange-500' to='/login'>Login here</Link>.</p>
-                            {/* <SocialLogin></SocialLogin> */}
+                            <SocialLogin></SocialLogin>
                         </form>
                     </div>
                 </div>

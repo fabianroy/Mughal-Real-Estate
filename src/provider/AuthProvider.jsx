@@ -30,7 +30,7 @@ const AuthProvider = ({ children }) => {
         });
     }
 
-    const signInwithGoogle = () => {
+    const signInWithGoogle = () => {
         setLoading(true);
         return signInWithPopup(auth, googleProvider);
     }
@@ -53,7 +53,7 @@ const AuthProvider = ({ children }) => {
         createUser,
         signIn,
         updateProfileInfo,
-        signInwithGoogle,
+        signInWithGoogle,
         logOut,
         loading
     };
