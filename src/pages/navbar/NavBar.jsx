@@ -19,6 +19,9 @@ const NavBar = () => {
     const navList = <>
         <NavLink className='font-semibold' to='/'><li><a>Home</a></li></NavLink>
         <NavLink className='font-semibold' to='/allproperties'><li><a>All Properties</a></li></NavLink>
+        {
+            user ? <NavLink className='font-semibold' to='/dashboard'><li><a>Dashboard</a></li></NavLink> : null
+        }
     </>
 
     return (
