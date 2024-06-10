@@ -2,11 +2,14 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import usePublicAxios from "../../hooks/usePublicAxios";
 
 const Register = () => {
 
     const { createUser, updateProfileInfo } = useAuth();
     const navigate = useNavigate();
+
+    const axiosSecure = usePublicAxios();
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -17,13 +20,27 @@ const Register = () => {
                 console.log(user);
                 updateProfileInfo(data.name, data.photoURL)
                     .then(() => {
-                        console.log('Profile updated successfully.');
-                        navigate('/');
-                        Swal.fire({
-                            title: "Registration Success!",
-                            text: "Boom! You have successfully registered.",
-                            icon: "success"
-                        });
+                        const userInfo = {
+                            name: data.name,
+                            photoURL: data.photoURL,
+                            email: user.email,
+                            password: data.password,
+                        };
+
+                        axiosSecure.post('/users', userInfo)
+                            .then(response => {
+                                console.log(response.data);
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Registration Successful!',
+                                    text: 'You have successfully registered.',
+                                    confirmButtonText: 'OK'
+                                });
+                                navigate('/');
+                            })
+                            .catch(error => {
+                                console.error(error);
+                            });
                     })
             })
             .catch(error => {
