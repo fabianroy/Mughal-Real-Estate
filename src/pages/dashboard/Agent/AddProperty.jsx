@@ -51,7 +51,7 @@ const AddProperty = () => {
     return (
         <div>
             <h2 className="text-3xl text-center font-semibold">Add Item</h2>
-            <div className="w-full m-4 md:m-4 md:w-[500px] md:mx-auto md:my-20 shadow-lg p-6 rounded-xl">
+            <div className="w-full m-4 md:m-4 md:w-[500px] md:mx-auto lg:my-10 shadow-lg p-6 rounded-xl">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="mb-4">
                         <input
