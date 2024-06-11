@@ -1,31 +1,40 @@
 import { useForm } from "react-hook-form";
 import { FaBuilding } from "react-icons/fa";
-import usePublicAxios from "../../../hooks/usePublicAxios";
 import useAxios from "../../../hooks/useAxios";
-import { useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import useAuth from "../../../hooks/useAuth";
 
 const UpdateProperty = () => {
 
     const { register, handleSubmit } = useForm();
-    const axiosPublic = usePublicAxios();
     const axiosSecure = useAxios();
     const navigate = useNavigate();
-    const { user } = useAuth();
+    const item = useLoaderData();
 
-    const onSubmit = async data => {
+    const { _id, propertyTitle, location, agentName, agentEmail, priceRange } = item;
+
+    const onSubmit = async (data) => {
         console.log(data);
 
-        const menuItem = {
+        const updatedProperty = {
             propertyTitle: data.propertyTitle,
             location: data.location,
             agentName: data.agentName,
             agentEmail: data.agentEmail,
             priceRange: data.priceRange,
+            status: 'pending',
         };
 
-        const 
+        const propertyRes = await axiosSecure.put(`/properties/${_id}`, updatedProperty);
+        if (propertyRes.data.modifiedCount > 0) {
+            navigate('/dashboard/myaddedproperties');
+            Swal.fire({
+                icon: 'success',
+                title: 'Property Updated Successfully',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
     }
 
     return (
@@ -36,6 +45,7 @@ const UpdateProperty = () => {
                     <div className="mb-4">
                         <input
                             type="text"
+                            defaultValue={propertyTitle}
                             placeholder="Property Title"
                             className="input input-bordered border-yellow-500 w-full"
                             {...register('propertyTitle', { required: true })}
@@ -44,6 +54,7 @@ const UpdateProperty = () => {
                     <div className="mb-4">
                         <input
                             type="text"
+                            defaultValue={location}
                             placeholder="Location"
                             className="input input-bordered border-yellow-500 w-full"
                             {...register('location', { required: true })}
@@ -55,7 +66,7 @@ const UpdateProperty = () => {
                             placeholder="Agent Name"
                             className="input input-bordered border-yellow-500 w-full"
                             {...register('agentName', { required: true })}
-                            defaultValue={user.displayName}
+                            defaultValue={agentName}
                             readOnly
                         />
                     </div>
@@ -65,13 +76,14 @@ const UpdateProperty = () => {
                             placeholder="Agent Email"
                             className="input input-bordered border-yellow-500 w-full"
                             {...register('agentEmail', { required: true })}
-                            defaultValue={user.email}
+                            defaultValue={agentEmail}
                             readOnly
                         />
                     </div>
                     <div className="mb-4">
                         <input
                             type="number"
+                            defaultValue={priceRange}
                             placeholder="Price Range"
                             className="input input-bordered border-yellow-500 w-full"
                             {...register('priceRange', { required: true })}

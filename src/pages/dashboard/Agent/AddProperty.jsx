@@ -32,7 +32,8 @@ const AddProperty = () => {
                 agentName: data.agentName,
                 agentEmail: data.agentEmail,
                 priceRange: data.priceRange,
-                image: res.data.data.display_url
+                image: res.data.data.display_url,
+                status: 'pending'
             };
             const propertyRes = await axiosSecure.post('/properties', menuItem);
             console.log(propertyRes.data);

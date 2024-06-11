@@ -66,20 +66,20 @@ const ManageProperties = () => {
                                         <div className="font-semibold text-orange-600">BDT {item.priceRange}</div>
                                     </td>
                                     <td>
-                                        <div className="font-semibold">{item.status}</div>
-                                    </td>
-                                    <td>
                                         <div className="font-semibold">{item.agentName}</div>
                                     </td>
                                     <td>
                                         <div className="font-semibold">{item.agentEmail}</div>
                                     </td>
                                     <td>
+                                        <div className="font-semibold">{item.status}</div>
+                                    </td>
+                                    <td>
                                         <button
                                             className="btn btn-success text-white"
-                                            onClick={() => handleStatusUpdate(item._id, 'Approved')}
+                                            onClick={() => handleStatusUpdate(item._id, 'Verified')}
                                         >
-                                            Approve
+                                            Verify
                                         </button>
                                     </td>
                                     <td>
