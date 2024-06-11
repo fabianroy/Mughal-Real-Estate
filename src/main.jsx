@@ -21,6 +21,8 @@ import {
 } from '@tanstack/react-query'
 import PrivateRoute from './route/PrivateRoute';
 import AdminRoute from './route/AdminRoute';
+import AgentProfile from './pages/dashboard/Agent/AgentProfile';
+import AddProperty from './pages/dashboard/Agent/AddProperty';
 
 const queryClient = new QueryClient()
 
@@ -63,6 +65,17 @@ const router = createBrowserRouter([
       {
         path: 'managereviews',
         element: <AdminRoute><ManageReviews></ManageReviews></AdminRoute>
+      },
+
+      // Agent Routes
+
+      {
+        path: 'agentprofile',
+        element: <AgentProfile></AgentProfile>
+      },
+      {
+        path: 'addproperty',
+        element: <AddProperty></AddProperty>
       }
     ]
   }
