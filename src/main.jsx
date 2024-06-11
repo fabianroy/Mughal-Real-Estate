@@ -23,6 +23,7 @@ import PrivateRoute from './route/PrivateRoute';
 import AdminRoute from './route/AdminRoute';
 import AgentProfile from './pages/dashboard/Agent/AgentProfile';
 import AddProperty from './pages/dashboard/Agent/AddProperty';
+import AgentRoute from './route/AgentRoute';
 
 const queryClient = new QueryClient()
 
@@ -71,11 +72,11 @@ const router = createBrowserRouter([
 
       {
         path: 'agentprofile',
-        element: <AgentProfile></AgentProfile>
+        element: <AgentRoute><AgentProfile></AgentProfile></AgentRoute>
       },
       {
         path: 'addproperty',
-        element: <AddProperty></AddProperty>
+        element: <AgentRoute><AddProperty></AddProperty></AgentRoute>
       }
     ]
   }
