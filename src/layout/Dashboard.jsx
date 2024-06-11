@@ -27,7 +27,7 @@ const Dashboard = () => {
         }
         {
             !isAdmin && !isAgent &&
-            <NavLink to='/userprofile' className='font-semibold'><li><a>User Profile</a></li></NavLink>
+            <NavLink to='/dashboard/customerprofile' className='font-semibold'><li><a>User Profile</a></li></NavLink>
         }
         <div className="divider"></div>
         <NavLink to='/' className='font-semibold'><li><a>Home</a></li></NavLink>
