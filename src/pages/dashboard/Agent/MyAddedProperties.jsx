@@ -1,15 +1,23 @@
 import { Link } from "react-router-dom";
 import useAxios from "../../../hooks/useAxios";
-import useProperties from "../../../hooks/useProperties";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
+import useAuth from "../../../hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
 
 const MyAddedItems = () => {
-
-    const [property, refetch] = useProperties();
     const axiosSecure = useAxios();
+    const { user } = useAuth();
 
-    const handleRemoveItem = item => {
+    const { data: properties = [], refetch } = useQuery({
+        queryKey: ['properties', user?.email],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(`/properties/agent/${user.email}`);
+            return data;
+        }
+    });
+
+    const handleRemoveItem = (item) => {
         Swal.fire({
             title: `Are you sure to remove ${item.propertyTitle}?`,
             text: "You won't be able to revert this!",
@@ -18,36 +26,34 @@ const MyAddedItems = () => {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, remove it!"
-        })
-            .then(res => {
-                if (res.isConfirmed) {
-                    axiosSecure.delete(`/properties/${item._id}`)
-                        .then(() => {
-                            refetch();
-                            Swal.fire(
-                                'Deleted!',
-                                'Your file has been deleted.',
-                                'success'
-                            )
-                        })
-                        .catch(error => {
-                            console.error(error);
-                            Swal.fire(
-                                'Error!',
-                                'Something went wrong',
-                                'error'
-                            )
-                        });
-                }
-            });
-    }
-
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/properties/${item._id}`)
+                    .then(() => {
+                        refetch();
+                        Swal.fire(
+                            'Deleted!',
+                            'Your property has been deleted.',
+                            'success'
+                        );
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                        Swal.fire(
+                            'Error!',
+                            'Something went wrong.',
+                            'error'
+                        );
+                    });
+            }
+        });
+    };
 
     return (
         <div>
             <div className="flex items-center justify-evenly my-4">
                 <h2 className="text-3xl font-semibold">My Added Properties</h2>
-                <h2 className="text-3xl font-semibold">Total Added Properties : {property.length} </h2>
+                <h2 className="text-3xl font-semibold">Total Added Properties: {properties.length}</h2>
             </div>
 
             <div className="my-12">
@@ -66,7 +72,7 @@ const MyAddedItems = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {property.map((item, index) => (
+                            {properties.map((item, index) => (
                                 <tr key={item._id}>
                                     <td>{index + 1}</td>
                                     <td>
@@ -92,12 +98,12 @@ const MyAddedItems = () => {
                                     </td>
                                     <td>
                                         <Link to={`/dashboard/updateProperty/${item._id}`} className="btn btn-warning text-white">
-                                            <FaEdit></FaEdit>
+                                            <FaEdit />
                                         </Link>
                                     </td>
                                     <td>
                                         <button onClick={() => handleRemoveItem(item)} className="btn btn-error text-white">
-                                            <FaTrash></FaTrash>
+                                            <FaTrash />
                                         </button>
                                     </td>
                                 </tr>
