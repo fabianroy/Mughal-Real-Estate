@@ -24,6 +24,8 @@ import AdminRoute from './route/AdminRoute';
 import AgentProfile from './pages/dashboard/Agent/AgentProfile';
 import AddProperty from './pages/dashboard/Agent/AddProperty';
 import AgentRoute from './route/AgentRoute';
+import MyAddedProperties from './pages/dashboard/Agent/MyAddedProperties';
+import UpdateProperty from './pages/dashboard/Agent/UpdateProperty';
 
 const queryClient = new QueryClient()
 
@@ -77,6 +79,15 @@ const router = createBrowserRouter([
       {
         path: 'addproperty',
         element: <AgentRoute><AddProperty></AddProperty></AgentRoute>
+      },
+      {
+        path: 'myaddedproperties',
+        element: <AgentRoute><MyAddedProperties></MyAddedProperties></AgentRoute>
+      },
+      {
+        path: 'updateproperty/:id',
+        element: <AgentRoute><UpdateProperty></UpdateProperty></AgentRoute>,
+        loader: ({ params }) => fetch(`http://localhost:3000/properties/${params.id}`)
       }
     ]
   }

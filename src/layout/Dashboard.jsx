@@ -22,6 +22,7 @@ const Dashboard = () => {
             <>
                 <NavLink to='/dashboard/agentprofile' className='font-semibold'><li><a>Agent Profile</a></li></NavLink>
                 <NavLink to='/dashboard/addproperty' className='font-semibold'><li><a>Add Property</a></li></NavLink>
+                <NavLink to='/dashboard/myaddedproperties' className='font-semibold'><li><a>My Added Items</a></li></NavLink>
             </>
         }
         {

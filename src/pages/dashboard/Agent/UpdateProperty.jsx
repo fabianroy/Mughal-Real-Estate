@@ -6,10 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 
-const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
-const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
-
-const AddProperty = () => {
+const UpdateProperty = () => {
 
     const { register, handleSubmit } = useForm();
     const axiosPublic = usePublicAxios();
@@ -19,33 +16,16 @@ const AddProperty = () => {
 
     const onSubmit = async data => {
         console.log(data);
-        const imageFile = { image: data.image[0] };
-        const res = await axiosPublic.post(image_hosting_api, imageFile, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        });
-        if (res.data.success) {
-            const menuItem = {
-                propertyTitle: data.propertyTitle,
-                location: data.location,
-                agentName: data.agentName,
-                agentEmail: data.agentEmail,
-                priceRange: data.priceRange,
-                image: res.data.data.display_url
-            };
-            const propertyRes = await axiosSecure.post('/properties', menuItem);
-            console.log(propertyRes.data);
-            if (propertyRes.data.insertedId) {
-                navigate('/dashboard/myaddedproperties');
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Property Added Successfully',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            }
-        }
+
+        const menuItem = {
+            propertyTitle: data.propertyTitle,
+            location: data.location,
+            agentName: data.agentName,
+            agentEmail: data.agentEmail,
+            priceRange: data.priceRange,
+        };
+
+        const 
     }
 
     return (
@@ -98,15 +78,8 @@ const AddProperty = () => {
                         />
                     </div>
                     <div>
-                        <input
-                            type="file"
-                            className="file-input file-input-bordered file-input-warning w-full"
-                            {...register('image', { required: true })}
-                        />
-                    </div>
-                    <div>
                         <button type="submit" className="btn btn-warning w-full mt-4">
-                            <FaBuilding /> Add Property
+                            <FaBuilding /> Update Property
                         </button>
                     </div>
                 </form>
@@ -115,4 +88,4 @@ const AddProperty = () => {
     );
 };
 
-export default AddProperty;
+export default UpdateProperty;

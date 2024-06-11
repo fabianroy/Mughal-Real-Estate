@@ -1,29 +1,53 @@
-// ManageProperties.jsx
-
-import useProperties from "../../../hooks/useProperties";
+import { Link } from "react-router-dom";
 import useAxios from "../../../hooks/useAxios";
+import useProperties from "../../../hooks/useProperties";
+import { FaEdit, FaTrash } from "react-icons/fa";
+import Swal from "sweetalert2";
 
-const ManageProperties = () => {
+const MyAddedItems = () => {
+
     const [property, refetch] = useProperties();
     const axiosSecure = useAxios();
 
+    const handleRemoveItem = item => {
+        Swal.fire({
+            title: `Are you sure to remove ${item.propertyTitle}?`,
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, remove it!"
+        })
+            .then(res => {
+                if (res.isConfirmed) {
+                    axiosSecure.delete(`/properties/${item._id}`)
+                        .then(() => {
+                            refetch();
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            )
+                        })
+                        .catch(error => {
+                            console.error(error);
+                            Swal.fire(
+                                'Error!',
+                                'Something went wrong',
+                                'error'
+                            )
+                        });
+                }
+            });
+    }
 
-    const handleStatusUpdate = async (id, status) => {
-        try {
-            const response = await axiosSecure.patch(`/properties/${id}/status`, { status });
-            if (response.status === 200) {
-                refetch(); //
-            }
-        } catch (error) {
-            console.error("Failed to update status", error);
-        }
-    };
 
     return (
         <div>
             <div className="flex items-center justify-evenly my-4">
-                <h2 className="text-3xl font-semibold">All Properties</h2>
-                <h2 className="text-3xl font-semibold">Total Properties : {property.length} </h2>
+                <h2 className="text-3xl font-semibold">My Added Properties</h2>
+                <h2 className="text-3xl font-semibold">Total Added Properties : {property.length} </h2>
             </div>
 
             <div className="my-12">
@@ -36,8 +60,6 @@ const ManageProperties = () => {
                                 <th>Property Title</th>
                                 <th>Location</th>
                                 <th>Price</th>
-                                <th>Agent</th>
-                                <th>Email</th>
                                 <th>Status</th>
                                 <th>Update</th>
                                 <th>Remove</th>
@@ -69,25 +91,13 @@ const ManageProperties = () => {
                                         <div className="font-semibold">{item.status}</div>
                                     </td>
                                     <td>
-                                        <div className="font-semibold">{item.agentName}</div>
+                                        <Link to={`/dashboard/updateProperty/${item._id}`} className="btn btn-warning text-white">
+                                            <FaEdit></FaEdit>
+                                        </Link>
                                     </td>
                                     <td>
-                                        <div className="font-semibold">{item.agentEmail}</div>
-                                    </td>
-                                    <td>
-                                        <button
-                                            className="btn btn-success text-white"
-                                            onClick={() => handleStatusUpdate(item._id, 'Approved')}
-                                        >
-                                            Approve
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <button
-                                            className="btn btn-error text-white"
-                                            onClick={() => handleStatusUpdate(item._id, 'Rejected')}
-                                        >
-                                            Reject
+                                        <button onClick={() => handleRemoveItem(item)} className="btn btn-error text-white">
+                                            <FaTrash></FaTrash>
                                         </button>
                                     </td>
                                 </tr>
@@ -100,4 +110,4 @@ const ManageProperties = () => {
     );
 };
 
-export default ManageProperties;
+export default MyAddedItems;
