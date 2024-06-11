@@ -9,7 +9,7 @@ const Profile = () => {
 
             <div className="w-full h-full mx-auto bg-orange-30 items-center justify-between gap-10 shadow-xl p-10 lg:p-20">
                 <div>
-                    <p className="text-xl">Hi, <span className="font-semibold">{user.displayName}</span>. Welcome to your agent profile.</p>
+                    <p className="text-xl">Hi, <span className="font-semibold">{user.displayName}</span>. Welcome to your admin profile.</p>
                 </div>
                 <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 items-center mt-10 w-fit mx-auto lg:mx-0">
                     <div className="w-fit">
