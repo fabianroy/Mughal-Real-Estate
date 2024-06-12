@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const PropertyCard = ({ item }) => {
 
-    const { _id, propertyTitle, location, priceRange, status, image, agentName,} = item;
+    const { _id, propertyTitle, location, priceRange, status, image, agentName, } = item;
 
     return (
         <div>
@@ -17,7 +17,7 @@ const PropertyCard = ({ item }) => {
                     <p>Price: BDT {priceRange}</p>
                     <p>Status: {status}</p>
                     <p>Agent: {agentName}</p>
-                    <Link to={`/propertydetails/${_id}`} className="btn btn-primary mt-4">View Details</Link>
+                    <Link to={`/propertydetails/${_id}`} className="btn btn-info mt-4">View Details</Link>
                 </div>
             </div>
         </div>

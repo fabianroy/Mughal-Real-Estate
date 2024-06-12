@@ -109,8 +109,11 @@ const router = createBrowserRouter([
 
       // Customer Routes
       {
-        path: 'customerprofile',
+        path: 'myprofile',
         element: <CustomerProfile></CustomerProfile>
+      },
+      {
+        path: 'myreviews',
       }
     ]
   }

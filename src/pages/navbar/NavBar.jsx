@@ -33,7 +33,7 @@ const NavBar = () => {
         }
         {
             user && !isAdmin && !isAgent &&
-            <NavLink className='font-semibold' to='/dashboard/customerprofile'><li><a>Dashboard</a></li></NavLink>
+            <NavLink className='font-semibold' to='/dashboard/myprofile'><li><a>Dashboard</a></li></NavLink>
         }
     </>
 
