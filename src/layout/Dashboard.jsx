@@ -29,7 +29,7 @@ const Dashboard = () => {
             !isAdmin && !isAgent && <>
             <NavLink to='/dashboard/myprofile' className='font-semibold'><li><a>My Profile</a></li></NavLink>
             <NavLink to='/dashboard/mywishlist' className='font-semibold'><li><a>My Wishlist</a></li></NavLink>
-            <NavLink to='/dashboard/customerprofile' className='font-semibold'><li><a>Property Bought</a></li></NavLink>
+            <NavLink to='/dashboard/propertybought' className='font-semibold'><li><a>Property Bought</a></li></NavLink>
             <NavLink to='/dashboard/myreviews' className='font-semibold'><li><a>My Reviews</a></li></NavLink>
             </>
             

@@ -32,6 +32,8 @@ import AllProperties from './pages/allproperties/AllProperties';
 import PropertyDetails from './pages/allproperties/PropertyDetails';
 import MyReviews from './pages/dashboard/Customer/MyReviews';
 import MyWishlist from './pages/dashboard/Customer/MyWishlist';
+import OfferPage from './pages/dashboard/Customer/OfferPage';
+import PropertyBought from './pages/dashboard/Customer/PropertyBought';
 
 const queryClient = new QueryClient()
 
@@ -121,6 +123,14 @@ const router = createBrowserRouter([
       {
         path: 'mywishlist',
         element: <MyWishlist></MyWishlist>
+      },
+      {
+        path: 'makeoffer/:id',
+        element: <OfferPage></OfferPage>,
+      },
+      {
+        path: 'propertybought',
+        element: <PropertyBought></PropertyBought>
       }
     ]
   }

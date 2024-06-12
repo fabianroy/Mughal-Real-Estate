@@ -97,12 +97,12 @@ const MyAddedItems = () => {
                                         <div className="font-semibold">{item.status}</div>
                                     </td>
                                     <td>
-                                        <Link to={`/dashboard/updateProperty/${item._id}`} className="btn btn-warning text-white">
+                                        <Link to={`/dashboard/updateProperty/${item._id}`} className="btn btn-warning text-white" disabled={item.status === "Verified" || item.status === "Rejected"}>
                                             <FaEdit />
                                         </Link>
                                     </td>
                                     <td>
-                                        <button onClick={() => handleRemoveItem(item)} className="btn btn-error text-white">
+                                        <button onClick={() => handleRemoveItem(item)} className="btn btn-error text-white" disabled={item.status === "Verified"}>
                                             <FaTrash />
                                         </button>
                                     </td>
@@ -117,3 +117,4 @@ const MyAddedItems = () => {
 };
 
 export default MyAddedItems;
+
