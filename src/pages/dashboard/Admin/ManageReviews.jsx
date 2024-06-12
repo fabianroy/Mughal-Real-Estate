@@ -11,7 +11,7 @@ const ManageReviews = () => {
     const { data: reviews, refetch } = useQuery({
         queryKey: ['reviews'],
         queryFn: async () => {
-            const { data } = await axiosPublic.get(`http://localhost:3000/reviews`);
+            const { data } = await axiosPublic.get(`https://mughal-server.vercel.app/reviews`);
             return data;
         }
     });

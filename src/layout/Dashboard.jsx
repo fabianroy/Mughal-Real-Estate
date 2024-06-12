@@ -23,17 +23,20 @@ const Dashboard = () => {
                 <NavLink to='/dashboard/agentprofile' className='font-semibold'><li><a>Agent Profile</a></li></NavLink>
                 <NavLink to='/dashboard/addproperty' className='font-semibold'><li><a>Add Property</a></li></NavLink>
                 <NavLink to='/dashboard/myaddedproperties' className='font-semibold'><li><a>My Added Items</a></li></NavLink>
+                <NavLink to='/dashboard/offeredproperties' className='font-semibold'><li><a>Offered Properties</a></li></NavLink>
+                <NavLink to='/dashboard/mysoldproperties' className='font-semibold'><li><a>My Sold Properties</a></li></NavLink>
             </>
         }
         {
             !isAdmin && !isAgent && <>
-            <NavLink to='/dashboard/myprofile' className='font-semibold'><li><a>My Profile</a></li></NavLink>
-            <NavLink to='/dashboard/mywishlist' className='font-semibold'><li><a>My Wishlist</a></li></NavLink>
-            <NavLink to='/dashboard/propertybought' className='font-semibold'><li><a>Property Bought</a></li></NavLink>
-            <NavLink to='/dashboard/myreviews' className='font-semibold'><li><a>My Reviews</a></li></NavLink>
+                <NavLink to='/dashboard/myprofile' className='font-semibold'><li><a>My Profile</a></li></NavLink>
+                <NavLink to='/dashboard/mywishlist' className='font-semibold'><li><a>My Wishlist</a></li></NavLink>
+                <NavLink to='/dashboard/buyproperty' className='font-semibold'><li><a>Buy Property</a></li></NavLink>
+                <NavLink to='/dashboard/propertybought' className='font-semibold'><li><a>Property Bought</a></li></NavLink>
+                <NavLink to='/dashboard/myreviews' className='font-semibold'><li><a>My Reviews</a></li></NavLink>
             </>
-            
-            
+
+
         }
         <div className="divider"></div>
         <NavLink to='/' className='font-semibold'><li><a>Home</a></li></NavLink>
@@ -60,7 +63,7 @@ const Dashboard = () => {
                 </div>
             </div>
 
-            <div className="lg:w-full lg:mx-20 my-20">
+            <div className="w-full my-6 lg:mx-10 lg:my-20">
                 <Outlet></Outlet>
             </div>
         </div>

@@ -18,7 +18,7 @@ const PropertyDetails = () => {
     const { data: reviews, isLoading, error } = useQuery({
         queryKey: ['reviews', _id],
         queryFn: async () => {
-            const { data } = await axiosPublic.get(`http://localhost:3000/reviews/${_id}`);
+            const { data } = await axiosPublic.get(`https://mughal-server.vercel.app/reviews/${_id}`);
             return data;
         }
     });
@@ -40,7 +40,7 @@ const PropertyDetails = () => {
                     Swal.showValidationMessage(`Please enter both title and review`);
                     return;
                 }
-                return axiosSecure.post(`http://localhost:3000/reviews`, {
+                return axiosSecure.post(`https://mughal-server.vercel.app/reviews`, {
                     reviewTitle,
                     review,
                     propertyId: _id,
@@ -58,7 +58,7 @@ const PropertyDetails = () => {
     };
 
     const handleAddToWishlist = () => {
-        axiosSecure.post(`http://localhost:3000/wishlist`, {
+        axiosSecure.post(`https://mughal-server.vercel.app/wishlist`, {
             propertyId: _id,
             customer: user.displayName,
             email: user.email,

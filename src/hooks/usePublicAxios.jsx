@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-    baseURL: 'http://localhost:3000',
+    baseURL: 'https://mughal-server.vercel.app',
 });
 
 const usePublicAxios = () => {

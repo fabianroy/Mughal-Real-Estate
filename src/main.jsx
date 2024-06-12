@@ -33,6 +33,9 @@ import PropertyDetails from './pages/allproperties/PropertyDetails';
 import MyReviews from './pages/dashboard/Customer/MyReviews';
 import MyWishlist from './pages/dashboard/Customer/MyWishlist';
 import OfferPage from './pages/dashboard/Customer/OfferPage';
+import OfferedProperties from './pages/dashboard/Agent/OfferedProperties';
+import Payment from './pages/dashboard/Customer/Payment';
+import BuyProperty from './pages/dashboard/Customer/BuyProperty';
 import PropertyBought from './pages/dashboard/Customer/PropertyBought';
 
 const queryClient = new QueryClient()
@@ -61,7 +64,7 @@ const router = createBrowserRouter([
       {
         path: 'propertydetails/:id',
         element: <PropertyDetails></PropertyDetails>,
-        loader: ({ params }) => fetch(`http://localhost:3000/properties/${params.id}`)
+        loader: ({ params }) => fetch(`https://mughal-server.vercel.app/properties/${params.id}`)
       }
     ],
   },
@@ -104,7 +107,11 @@ const router = createBrowserRouter([
       {
         path: 'updateproperty/:id',
         element: <AgentRoute><UpdateProperty></UpdateProperty></AgentRoute>,
-        loader: ({ params }) => fetch(`http://localhost:3000/properties/${params.id}`)
+        loader: ({ params }) => fetch(`https://mughal-server.vercel.app/properties/${params.id}`)
+      },
+      {
+        path: 'offeredproperties',
+        element: <OfferedProperties></OfferedProperties>
       },
       {
         path: 'mysoldproperties',
@@ -127,6 +134,14 @@ const router = createBrowserRouter([
       {
         path: 'makeoffer/:id',
         element: <OfferPage></OfferPage>,
+      },
+      {
+        path: 'buyproperty',
+        element: <BuyProperty></BuyProperty>
+      },
+      {
+        path: 'payment/:id',
+        element: <Payment></Payment>
       },
       {
         path: 'propertybought',
