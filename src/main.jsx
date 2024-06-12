@@ -28,6 +28,8 @@ import MyAddedProperties from './pages/dashboard/Agent/MyAddedProperties';
 import UpdateProperty from './pages/dashboard/Agent/UpdateProperty';
 import MySoldProperties from './pages/dashboard/Agent/MySoldProperties';
 import CustomerProfile from './pages/dashboard/Customer/CustomerProfile';
+import AllProperties from './pages/allproperties/AllProperties';
+import PropertyDetails from './pages/allproperties/PropertyDetails';
 
 const queryClient = new QueryClient()
 
@@ -47,6 +49,15 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: <Register></Register>,
+      },
+      {
+        path: "allproperties",
+        element: <AllProperties></AllProperties>
+      },
+      {
+        path: 'propertydetails/:id',
+        element: <PropertyDetails></PropertyDetails>,
+        loader: ({ params }) => fetch(`http://localhost:3000/properties/${params.id}`)
       }
     ],
   },
