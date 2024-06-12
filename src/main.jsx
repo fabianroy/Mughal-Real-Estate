@@ -30,6 +30,8 @@ import MySoldProperties from './pages/dashboard/Agent/MySoldProperties';
 import CustomerProfile from './pages/dashboard/Customer/CustomerProfile';
 import AllProperties from './pages/allproperties/AllProperties';
 import PropertyDetails from './pages/allproperties/PropertyDetails';
+import MyReviews from './pages/dashboard/Customer/MyReviews';
+import MyWishlist from './pages/dashboard/Customer/MyWishlist';
 
 const queryClient = new QueryClient()
 
@@ -114,6 +116,11 @@ const router = createBrowserRouter([
       },
       {
         path: 'myreviews',
+        element: <MyReviews></MyReviews>
+      },
+      {
+        path: 'mywishlist',
+        element: <MyWishlist></MyWishlist>
       }
     ]
   }
