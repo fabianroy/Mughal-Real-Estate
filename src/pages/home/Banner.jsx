@@ -1,4 +1,4 @@
-import banner from '../../assets/banner.png';
+import banner from '../../assets/banner.svg';
 const Banner = () => {
     return (
         <div className='w-fit mx-auto'>
