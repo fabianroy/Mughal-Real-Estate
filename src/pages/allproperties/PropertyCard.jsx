@@ -9,7 +9,7 @@ const PropertyCard = ({ item }) => {
         <div>
             <div className="card bordered shadow-lg w-96">
                 <figure>
-                    <img src={image} alt={propertyTitle} />
+                    <img className="w-full h-60" src={image} alt={propertyTitle} />
                 </figure>
                 <div className="card-body">
                     <h2 className="card-title">{propertyTitle}</h2>

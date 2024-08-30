@@ -22,7 +22,7 @@ const Advertise = () => {
                 {add.map((ad) => (
                     <div key={ad._id} className="card bordered">
                         <figure>
-                            <img className="w-full h-52" src={ad.image} alt={ad.title} />
+                            <img className="w-full h-60" src={ad.image} alt={ad.title} />
                         </figure>
                         <div className="card-body">
                             <h2 className="card-title">{ad.propertyTitle}</h2>
